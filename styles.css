@@ -34,6 +34,11 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header) + 20px);
@@ -905,6 +910,7 @@ em {
 
 .review-card {
   align-self: start;
+  min-width: 0;
   padding: 26px 28px;
   background: rgba(255, 255, 255, .75);
   border: 1px solid #e3cfd7;
@@ -1505,6 +1511,10 @@ dialog .btn {
 @media (max-width: 759px) {
   body {
     padding-bottom: calc(78px + env(safe-area-inset-bottom));
+  }
+
+  .review-grid {
+    grid-template-columns: 1fr;
   }
 
   .container {
