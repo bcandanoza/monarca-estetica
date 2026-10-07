@@ -1513,6 +1513,14 @@ dialog .btn {
     padding-bottom: 0;
   }
 
+  html {
+    scroll-padding-top: calc(var(--header) + 8px);
+  }
+
+  .section {
+    padding-block: 68px 76px;
+  }
+
   .header-cta {
     display: none;
   }
