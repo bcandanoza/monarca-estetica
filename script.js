@@ -79,7 +79,10 @@ function setMenu(open, restoreFocus = false) {
   menuButton.setAttribute("aria-expanded", String(open));
   menuButton.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
 
-  if (open) navigation.querySelector("a").focus();
+  if (open) {
+    document.documentElement.scrollTop = 0;
+    navigation.querySelector("a").focus();
+  }
   if (restoreFocus) menuButton.focus();
 }
 

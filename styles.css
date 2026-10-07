@@ -55,6 +55,7 @@ body {
 
 body.menu-open {
   overflow: hidden;
+  overflow: clip;
 }
 
 button,
