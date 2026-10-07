@@ -1517,10 +1517,6 @@ dialog .btn {
     scroll-padding-top: calc(var(--header) + 2px);
   }
 
-  .section {
-    padding-block: 24px 72px;
-  }
-
   .header-cta {
     display: none;
   }
