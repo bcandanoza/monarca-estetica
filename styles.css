@@ -1513,10 +1513,6 @@ dialog .btn {
     padding-bottom: 0;
   }
 
-  html {
-    scroll-padding-top: calc(var(--header) + 2px);
-  }
-
   .header-cta {
     display: none;
   }
