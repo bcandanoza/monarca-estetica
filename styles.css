@@ -1510,7 +1510,15 @@ dialog .btn {
 
 @media (max-width: 759px) {
   body {
-    padding-bottom: calc(78px + env(safe-area-inset-bottom));
+    padding-bottom: 0;
+  }
+
+  .header-cta {
+    display: none;
+  }
+
+  .menu-toggle {
+    margin-left: auto;
   }
 
   .review-grid {
@@ -1603,7 +1611,7 @@ dialog .btn {
 
   .whatsapp-float {
     right: 16px;
-    bottom: calc(93px + env(safe-area-inset-bottom));
+    bottom: 22px;
     padding: 14px;
   }
 
@@ -1612,23 +1620,11 @@ dialog .btn {
   }
 
   .mobile-cta {
-    display: block;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: var(--z-mobile-cta);
-    background: rgba(252, 250, 249, .97);
-    border-top: 1px solid var(--line);
-    padding: 12px 18px calc(12px + env(safe-area-inset-bottom));
-  }
-
-  .mobile-cta .btn {
-    width: 100%;
+    display: none;
   }
 
   .toast {
-    bottom: calc(160px + env(safe-area-inset-bottom));
+    bottom: calc(90px + env(safe-area-inset-bottom));
   }
 
   footer {
