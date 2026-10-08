@@ -150,6 +150,35 @@ em {
   padding-block: 86px;
 }
 
+#tratamientos {
+  scroll-margin-top: -20px;
+  padding-top: 56px;
+}
+
+#tecnologia {
+  scroll-margin-top: -20px;
+  padding-top: 56px;
+}
+
+#experiencia {
+  scroll-margin-top: -20px;
+  padding-top: 56px;
+}
+
+#testimonios {
+  scroll-margin-top: -20px;
+  padding-top: 56px;
+}
+
+#contacto {
+  scroll-margin-top: -20px;
+  padding-top: 56px;
+}
+
+#preguntas {
+  padding-bottom: 56px;
+}
+
 .eyebrow {
   color: var(--wine);
   text-transform: uppercase;
@@ -804,8 +833,24 @@ em {
 /* EXPERIENCE */
 .experience-grid {
   display: grid;
+  grid-template-areas:
+    "head"
+    "media"
+    "body";
   gap: 38px;
   align-items: center;
+}
+
+.experience-media {
+  grid-area: media;
+}
+
+.experience-copy-head {
+  grid-area: head;
+}
+
+.experience-copy-body {
+  grid-area: body;
 }
 
 .experience-photos {
@@ -1433,6 +1478,9 @@ dialog .btn {
 
   .experience-grid {
     grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "media head"
+      "media body";
     gap: 70px;
   }
 
@@ -1515,6 +1563,80 @@ dialog .btn {
 }
 
 @media (max-width: 759px) {
+  .contact .actions .btn {
+    width: 100%;
+  }
+
+  .contact-links .text-link[href^="tel:"] {
+    display: none;
+  }
+
+  .contact-links [data-whatsapp] {
+    display: none;
+  }
+
+  .contact-links {
+    justify-content: center;
+  }
+
+  .instagram .btn {
+    width: 100%;
+  }
+
+  .social-placeholders {
+    grid-template-columns: 1fr;
+  }
+
+  .social-placeholders.carousel-3d {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    overflow: hidden;
+  }
+
+  .social-placeholders.carousel-3d .social-placeholder {
+    position: absolute;
+    width: min(72vw, 280px);
+    aspect-ratio: 1;
+    margin: 0;
+    transition: transform .7s cubic-bezier(.22, .61, .36, 1), opacity .7s, filter .7s;
+    will-change: transform;
+  }
+
+  .social-placeholders.carousel-3d .social-placeholder.carousel-active {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    z-index: 3;
+    box-shadow: 0 22px 45px rgba(0, 0, 0, .18);
+  }
+
+  .social-placeholders.carousel-3d .social-placeholder.carousel-right {
+    transform: translateX(85%) scale(.82);
+    opacity: .5;
+    z-index: 2;
+  }
+
+  .social-placeholders.carousel-3d .social-placeholder.carousel-left {
+    transform: translateX(-85%) scale(.82);
+    opacity: .5;
+    z-index: 1;
+  }
+
+  .review-card:nth-child(n+4) {
+    display: none;
+  }
+
+  .experience-copy-body .text-link {
+    display: table;
+    margin-inline: auto;
+  }
+
+  .technology .actions .btn {
+    width: 100%;
+  }
+
   body {
     padding-bottom: 0;
   }

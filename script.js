@@ -20,9 +20,9 @@ const IMAGES = {
 };
 
 const INSTAGRAM_URL = "https://www.instagram.com/monarca_estetica";
-const MAP_QUERY = "Centro Comercial Villa Country, Barranquilla, Atlántico, Colombia";
+const MAP_QUERY = "Monarca Estética Láser, Centro Comercial Villa Country, Barranquilla, Atlántico, Colombia";
 const whatsappMessage = encodeURIComponent(
-  "Hola, quiero agendar una valoración gratuita en Monarca Estética Láser."
+  "Hola, quiero agendar una valoración gratuita. ¿Me pueden compartir horarios y cómo reservo?"
 );
 
 // DATOS
@@ -201,8 +201,8 @@ function openWhatsApp(treatment = "") {
 
   const message = treatment
     ? encodeURIComponent(
-      "Hola, quiero agendar una valoración gratuita en Monarca Estética Láser. Me interesa: " +
-      treatment + "."
+      "Hola, me gustaría una valoración gratuita para conocer si el tratamiento de " +
+      treatment + " es adecuado para mí."
     )
     : whatsappMessage;
 
@@ -265,3 +265,123 @@ document.getElementById("booking-form").addEventListener("submit", (event) => {
   }
   openWhatsApp(treatmentSelect.value);
 });
+
+// SLIDER 3D - Instagram (móvil)
+(() => {
+  const grid = document.querySelector(".social-placeholders");
+  if (!grid || grid.children.length < 3) return;
+  const items = [...grid.children];
+  const sliderQuery = window.matchMedia("(max-width: 759px)");
+  let active = 0;
+  let timer = null;
+
+  const apply = () => {
+    items.forEach((item, index) => {
+      const delta = (index - active + items.length) % items.length;
+      item.classList.toggle("carousel-active", delta === 0);
+      item.classList.toggle("carousel-right", delta === 1);
+      item.classList.toggle("carousel-left", delta === items.length - 1);
+    });
+  };
+
+  const next = () => {
+    active = (active + 1) % items.length;
+    apply();
+  };
+
+  const prev = () => {
+    active = (active - 1 + items.length) % items.length;
+    apply();
+  };
+
+  const start = () => {
+    active = 0;
+    grid.classList.add("carousel-3d");
+    apply();
+    if (!reducedMotion.matches) timer = setInterval(next, 3200);
+  };
+
+  const stop = () => {
+    grid.classList.remove("carousel-3d");
+    items.forEach((item) =>
+      item.classList.remove("carousel-active", "carousel-right", "carousel-left")
+    );
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  };
+
+  let startX = 0;
+  grid.addEventListener(
+    "touchstart",
+    (event) => {
+      startX = event.touches[0].clientX;
+    },
+    { passive: true }
+  );
+  grid.addEventListener(
+    "touchend",
+    (event) => {
+      const delta = event.changedTouches[0].clientX - startX;
+      if (Math.abs(delta) < 40) return;
+      if (delta < 0) next();
+      else prev();
+    },
+    { passive: true }
+  );
+
+  items.forEach((item) => {
+    item.addEventListener("click", () => {
+      if (item.classList.contains("carousel-right")) next();
+      else if (item.classList.contains("carousel-left")) prev();
+    });
+  });
+
+  sliderQuery.addEventListener("change", () => {
+    if (sliderQuery.matches) start();
+    else stop();
+  });
+  if (sliderQuery.matches) start();
+})();
+
+// ACORDEONES SUAVES - Tecnología y Preguntas Frecuentes
+(() => {
+  if (reducedMotion.matches) return;
+  const ease = "height .35s cubic-bezier(.22, .61, .36, 1), padding-bottom .35s cubic-bezier(.22, .61, .36, 1)";
+  const closeEase = "height .3s ease, padding-bottom .3s ease";
+  document.querySelectorAll(".tech-details details, .faq-item").forEach((details) => {
+    const body = details.querySelector(":scope > p");
+    if (!body) return;
+    const naturalPadding = parseFloat(getComputedStyle(body).paddingBottom);
+
+    const cleanup = (event) => {
+      if (event.propertyName !== "height") return;
+      body.style.height = "";
+      body.style.paddingBottom = "";
+      body.style.overflow = "";
+      body.style.transition = "";
+    };
+
+    details.addEventListener("toggle", () => {
+      body.addEventListener("transitionend", cleanup, { once: true });
+      body.style.transition = details.open ? ease : closeEase;
+      body.style.overflow = "hidden";
+      if (details.open) {
+        body.style.height = "0px";
+        body.style.paddingBottom = "0px";
+        requestAnimationFrame(() => {
+          body.style.height = body.scrollHeight + "px";
+          body.style.paddingBottom = naturalPadding + "px";
+        });
+      } else {
+        body.style.height = body.scrollHeight + "px";
+        body.style.paddingBottom = naturalPadding + "px";
+        requestAnimationFrame(() => {
+          body.style.height = "0px";
+          body.style.paddingBottom = "0px";
+        });
+      }
+    });
+  });
+})();
