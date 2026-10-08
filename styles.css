@@ -137,6 +137,18 @@ em {
   outline-offset: 5px;
 }
 
+.tech-details summary:focus,
+.tech-details summary:focus-visible,
+.faq-item summary:focus,
+.faq-item summary:focus-visible {
+  outline: none;
+}
+
+.tech-details summary,
+.faq-item summary {
+  -webkit-tap-highlight-color: transparent;
+}
+
 [hidden] {
   display: none !important;
 }
