@@ -30,10 +30,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap">
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
+    media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap">
+  </noscript>
 
   <!-- CSS -->
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Script → defer evita bloquear el primer render -->
+  <script src="script.js" defer></script>
 
   <!-- SEO LOCAL: ficha de Google del negocio (5.0, 421 reseñas). -->
   <script type="application/ld+json">
@@ -198,7 +206,10 @@
           <div class="hero-visual">
             <div class="media hero-image">
               <img data-image="hero" alt="Retrato editorial de belleza y cuidado de la piel" fetchpriority="high"
-                decoding="async" width="900" height="1100">
+                decoding="async" width="900" height="1100"
+                sizes="(min-width: 760px) 609px, 94vw"
+                srcset="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&amp;fit=crop&amp;w=700&amp;q=85 700w,https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&amp;fit=crop&amp;w=900&amp;q=85 900w,https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&amp;fit=crop&amp;w=1200&amp;q=85 1200w"
+                src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
             </div>
             <div class="hero-label">
               <div><small>La esencia de Monarca</small><strong>Tu piel. Tu bienestar. Tu momento.</strong></div>
@@ -705,7 +716,6 @@
     </div>
   </noscript>
 
-  <script src="script.js"></script>
 </body>
 
 </html>

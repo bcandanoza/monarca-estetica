@@ -43,7 +43,9 @@ document.querySelectorAll("[data-image]").forEach((image) => {
     }
   });
 
-  image.src = url;
+  if (!image.src) {
+    image.src = url;
+  }
   image.hidden = false;
 
   if (image.dataset.image === "technology") {
